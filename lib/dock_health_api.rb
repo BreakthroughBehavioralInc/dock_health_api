@@ -4,10 +4,10 @@ require "forwardable"
 # Version
 require "dock_health_api/version"
 
-# require "dock_health_api/crud/get"
-# require "dock_health_api/crud/create"
-# require "dock_health_api/crud/update"
-# require "dock_health_api/crud/delete"
+require "dock_health_api/crud/get"
+require "dock_health_api/crud/create"
+require "dock_health_api/crud/update"
+require "dock_health_api/crud/delete"
 
 require "dock_health_api/config"
 
@@ -16,6 +16,8 @@ module DockHealthApi
   autoload :Error, "dock_health_api/error"
   autoload :Object, "dock_health_api/object"
   autoload :Resource, "dock_health_api/resource"
+
+  autoload :User, "dock_health_api/resources/user"
 
 
   @config = DockHealthApi::Config.new

@@ -19,7 +19,7 @@ module DockHealthApi
               "on its subclasses (e.g. Patient)"
       end
 
-      "#{client.config.resource_url}/#{url_version}/#{class_name}"
+      "#{client.config.resource_url}/api/#{url_version}/#{class_name.downcase}"
     end
 
     def self.execute_request(method, url, params: {}, headers: {}, body_params: nil)
