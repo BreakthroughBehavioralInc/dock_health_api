@@ -6,5 +6,5 @@ RSpec::Core::RakeTask.new(:spec)
 task :default => :spec
 
 task :console do
-  exec "irb -I lib -r cigna_api.rb"
+  exec "irb -I lib -r dock_health_api.rb"
 end

@@ -13,7 +13,7 @@ require "dotenv/load"
 
 DockHealthApi.api_key = ENV["DOCK_HEALTH_KEY"]
 DockHealthApi.api_secret = ENV["DOCK_HEALTH_SECRET"]
-DockHealthApi.resource_url = ENV["CIGNA_API_URL"]
+DockHealthApi.resource_url = ENV["DOCK_HEALTH_URL"]
 
 require "irb"
 IRB.start(__FILE__)

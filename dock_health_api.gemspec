@@ -1,7 +1,7 @@
 require_relative 'lib/dock_health_api/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "dock_heath_api"
+  spec.name          = "dock_health_api"
   spec.version       = DockHealthApi::VERSION
   spec.authors       = ["Robert Magomero", "Leo Lee"]
   spec.email         = ["", "rmagomero@mdlive.com"]

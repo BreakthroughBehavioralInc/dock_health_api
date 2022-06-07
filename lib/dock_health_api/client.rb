@@ -9,7 +9,7 @@ module DockHealthApi
     end
 
     def self.active_client
-      new(CignaApi.config)
+      new(DockHealthApi.config)
     end
 
     def connection

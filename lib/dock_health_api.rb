@@ -2,23 +2,23 @@
 require "forwardable"
 
 # Version
-require "cigna_api/version"
+require "dock_health_api/version"
 
-require "dock_health_api/crud/get"
-require "dock_health_api/crud/create"
-require "dock_health_api/crud/update"
-require "dock_health_api/crud/delete"
+# require "dock_health_api/crud/get"
+# require "dock_health_api/crud/create"
+# require "dock_health_api/crud/update"
+# require "dock_health_api/crud/delete"
 
 require "dock_health_api/config"
 
-module CignaApi
+module DockHealthApi
   autoload :Client, "dock_health_api/client"
   autoload :Error, "dock_health_api/error"
   autoload :Object, "dock_health_api/object"
   autoload :Resource, "dock_health_api/resource"
 
 
-  @config = CignaApi::Config.new
+  @config = DockHealthApi::Config.new
 
   class << self
     attr_reader :config
