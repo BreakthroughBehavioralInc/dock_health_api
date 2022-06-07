@@ -20,7 +20,9 @@ module DockHealthApi
   autoload :Resource, "dock_health_api/resource"
 
   autoload :User, "dock_health_api/resources/user"
-
+  autoload :Task, "dock_health_api/resources/task"
+  autoload :List, "dock_health_api/resources/list"
+  autoload :Webhook, "dock_health_api/resources/webhook"
 
   @config = DockHealthApi::Config.new
 
