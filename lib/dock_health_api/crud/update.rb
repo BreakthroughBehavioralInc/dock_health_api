@@ -1,10 +1,12 @@
+require "dotenv/load"
 module DockHealthApi
   module Crud
     module Update
       def update(id, **params)
-        response = execute_request(:put,
+        headers = {"Content-Type": "application/json", "x-api-key": "#{ENV["DOCK_HEALTH_API"]}", "x-user-id": "#{ENV["DOCK_USER"]}", "x-organization-id": "#{ENV["DOCK_ORG"]}"}
+        response = execute_request(:patch,
                                    "#{resource_url}/#{id}",
-                                   headers: {"Content-Type": "application/json"},
+                                   headers: headers,
                                    body_params: params)
         return response.parsed if response.error
         new(response.parsed)
