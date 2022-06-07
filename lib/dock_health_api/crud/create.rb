@@ -1,3 +1,4 @@
+require "dotenv/load"
 module DockHealthApi
   module Crud
     module Create
