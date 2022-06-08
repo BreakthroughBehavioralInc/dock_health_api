@@ -16,7 +16,6 @@ module DockHealthApi
       def self.resource_url
         "#{client.config.resource_url}/api/#{url_version}/list/user"
       end
-
     end
   end
 end
