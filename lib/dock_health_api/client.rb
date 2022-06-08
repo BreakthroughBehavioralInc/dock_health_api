@@ -17,7 +17,7 @@ module DockHealthApi
     end
 
     def token_connection
-      @token_connection ||= connection.client_credentials.get_token(scope:"dockhealth/system.developer.read dockhealth/user.all.write dockhealth/user.all.read dockhealth/system.developer.write") 
+      @token_connection ||= connection.client_credentials.get_token(scope:"dockhealth/system.developer.read dockhealth/user.all.write dockhealth/user.all.read dockhealth/system.developer.write dockhealth/patient.all.read dockhealth/patient.all.write") 
     end
 
     def token
