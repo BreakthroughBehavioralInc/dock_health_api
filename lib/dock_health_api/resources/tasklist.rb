@@ -6,8 +6,6 @@ module DockHealthApi
     extend DockHealthApi::Crud::Update
     extend DockHealthApi::Crud::List
 
-    
-
     def self.resource_url
       "#{client.config.resource_url}/api/#{url_version}/list"
     end
@@ -18,7 +16,9 @@ module DockHealthApi
       extend DockHealthApi::Crud::Update
 
       def self.resource_url
-        "#{@@resource_url}/user"
+        "#{client.config.resource_url}/api/#{url_version}/list/user"
+      end
+
       end
     end
   end
