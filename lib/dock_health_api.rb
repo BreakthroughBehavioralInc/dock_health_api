@@ -7,6 +7,7 @@ require "dock_health_api/version"
 require "dock_health_api/crud/get"
 require "dock_health_api/crud/create"
 require "dock_health_api/crud/update"
+require "dock_health_api/crud/put"
 require "dock_health_api/crud/delete"
 require "dock_health_api/crud/list"
 
