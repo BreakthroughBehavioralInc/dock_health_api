@@ -6,10 +6,10 @@ module DockHealthApi
     extend DockHealthApi::Crud::Update
     extend DockHealthApi::Crud::List
 
-    @@resource_url = "#{client.config.resource_url}/api/#{url_version}/list"
+    
 
     def self.resource_url
-      @@resource_url
+      "#{client.config.resource_url}/api/#{url_version}/list"
     end
 
     class User < TaskList
