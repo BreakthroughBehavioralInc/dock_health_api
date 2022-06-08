@@ -46,6 +46,7 @@ GEM
     ruby2_keywords (0.0.5)
 
 PLATFORMS
+  arm64-darwin-21
   x86_64-darwin-20
 
 DEPENDENCIES
@@ -57,4 +58,4 @@ DEPENDENCIES
   rspec (~> 3.0)
 
 BUNDLED WITH
-   2.3.9
+   2.3.15
