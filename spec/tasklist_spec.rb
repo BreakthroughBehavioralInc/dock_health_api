@@ -38,6 +38,21 @@ RSpec.describe DockHealthApi::TaskList do
         expect(response["taskList"]).to eq(tasklist["listName"])
       end
     end
+
+    context "get TaskList with invalid id" do
+      it "should return 404" do
+        invalid_id = "123"
+        response = DockHealthApi::TaskList.get(invalid_id)
+        expect(response["status"]).to eq(400)
+      end
+    end
+
+    context "get TaskList with wrong id" do
+      it "should return 400" do
+        wrong_id = "a" * 36
+        response = DockHealthApi::TaskList.get(wrong_id)
+        expect(response["status"]).to eq(404)
+      end
   end
 
   describe "#update" do
