@@ -10,7 +10,7 @@ module DockHealthApi
                                    "#{resource_url}/#{id}",
                                    headers: headers,
                                    body_params: params)
-        return response.parsed if response.error
+        return response.parsed
         new(response.parsed)
       end
     end

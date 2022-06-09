@@ -7,15 +7,6 @@ RSpec.describe DockHealthApi::TaskList do
   let(:update_tasklist) { { listName: "testlist Update"} }
   id = ""
 
-  describe "#list" do
-    context "list all TaskList" do
-      it "should list all TaskList" do
-        respond = DockHealthApi::TaskList.list
-        expect(respond.first.is_a?(DockHealthApi::TaskList))
-      end
-    end
-  end
-
   describe "#create" do
     context "create a new TaskList" do
       it "should create a new TaskList" do
@@ -27,6 +18,15 @@ RSpec.describe DockHealthApi::TaskList do
         # storing this id for later because TaskList.list.last is NOT
         # the last created TaskList
         id = respond["id"]
+      end
+    end
+  end
+
+  describe "#list" do
+    context "list all TaskList" do
+      it "should list all TaskList" do
+        respond = DockHealthApi::TaskList.list
+        expect(respond.first.is_a?(DockHealthApi::TaskList))
       end
     end
   end
