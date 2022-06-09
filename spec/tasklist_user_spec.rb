@@ -17,6 +17,29 @@ RSpec.describe DockHealthApi::TaskList::User do
         expect(final_count - initial_count).to eq(1)
       end
     end
+
+    context "Using bad params to add user to TaskList" do
+      it "should return 400" do
+        bad_params = { taskList: { type: "DEVELOPER", id: taskid } }
+        initial_count = DockHealthApi::TaskList.list.last["listUsers"].count
+        response = DockHealthApi::TaskList::User.put(bad_params)
+        final_count = DockHealthApi::TaskList.list.last["listUsers"].count
+        expect(response["status"]).to eq(400)
+        expect(final_count - initial_count).to eq(0)
+      end
+    end
+
+    context "Using wrong ids to add user to TaskList" do
+      it "should return 404" do
+        bad_params = { taskList: { type: "DEVELOPER", id: taskid }, user: { type: "DEVELOPER", id: "a" * 36 } }
+        initial_count = DockHealthApi::TaskList.list.last["listUsers"].count
+        response = DockHealthApi::TaskList::User.put(bad_params)
+        final_count = DockHealthApi::TaskList.list.last["listUsers"].count
+        expect(response["status"]).to eq(404)
+        expect(final_count - initial_count).to eq(0)
+      end
+    end
+
   end
 
   describe "#update" do
