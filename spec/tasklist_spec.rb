@@ -11,13 +11,13 @@ RSpec.describe DockHealthApi::TaskList do
     context "create a new TaskList" do
       it "should create a new TaskList" do
         initial_count = DockHealthApi::TaskList.list.count
-        respond = DockHealthApi::TaskList.create(tasklist)
+        response = DockHealthApi::TaskList.create(tasklist)
         final_count = DockHealthApi::TaskList.list.count
-        expect(respond["tasklist"]).to eq(tasklist["listName"])
+        expect(response["tasklist"]).to eq(tasklist["listName"])
         expect(final_count - initial_count).to eq(1)
         # storing this id for later because TaskList.list.last is NOT
         # the last created TaskList
-        id = respond["id"]
+        id = response["id"]
       end
     end
   end
@@ -25,8 +25,8 @@ RSpec.describe DockHealthApi::TaskList do
   describe "#list" do
     context "list all TaskList" do
       it "should list all TaskList" do
-        respond = DockHealthApi::TaskList.list
-        expect(respond.first.is_a?(DockHealthApi::TaskList))
+         response = DockHealthApi::TaskList.list
+        expect(response.first.is_a?(DockHealthApi::TaskList))
       end
     end
   end
@@ -34,8 +34,8 @@ RSpec.describe DockHealthApi::TaskList do
   describe "#get" do
     context "get a specific TaskList" do
       it "should get the correct TaskList" do
-        respond = DockHealthApi::TaskList.get(id)
-        expect(respond["taskList"]).to eq(tasklist["listName"])
+        response = DockHealthApi::TaskList.get(id)
+        expect(response["taskList"]).to eq(tasklist["listName"])
       end
     end
   end
@@ -44,8 +44,8 @@ RSpec.describe DockHealthApi::TaskList do
     context "update an existing TaskList" do
       it "should update an exiting TaskList" do
         params = update_tasklist.merge(id: id)
-        respond = DockHealthApi::TaskList.update(params)
-        expect(respond["taskList"]).to eq(update_tasklist["taskList"])
+        response = DockHealthApi::TaskList.update(params)
+        expect(response["taskList"]).to eq(update_tasklist["taskList"])
       end
     end
   end
@@ -54,9 +54,9 @@ RSpec.describe DockHealthApi::TaskList do
     context "delete an existing TaskList" do
       it "should delete an existing TaskList" do
         initial_count = DockHealthApi::TaskList.list.count
-        respond = DockHealthApi::TaskList.delete(id: id)
+        response = DockHealthApi::TaskList.delete(id: id)
         final_count = DockHealthApi::TaskList.list.count
-        expect(respond).to eq("")
+        expect(response).to eq("")
         expect(final_count - initial_count).to eq(-1)
       end
     end
