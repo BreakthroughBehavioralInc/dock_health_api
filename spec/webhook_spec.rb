@@ -9,7 +9,7 @@ RSpec.describe DockHealthApi::Webhook do
             }
   id = ""
 
-  describe "#put" do
+  describe "#create" do
     context "Add new webhook" do
       it "should add new webhook" do
         initial_count = DockHealthApi::Webhook.list.count
@@ -64,7 +64,7 @@ RSpec.describe DockHealthApi::Webhook do
     end
 
     context "get webhook with invalid id" do
-      it "should return 404" do
+      it "should return 400" do
         invalid_id = "123"
         response = DockHealthApi::Webhook.get(invalid_id)
         expect(response["status"]).to eq(400)
@@ -72,7 +72,7 @@ RSpec.describe DockHealthApi::Webhook do
     end
 
     context "get webhook with wrong id" do
-      it "should return 400" do
+      it "should return 404" do
         wrong_id = "a" * 36
         response = DockHealthApi::Webhook.get(wrong_id)
         expect(response["status"]).to eq(404)
