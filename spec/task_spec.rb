@@ -46,6 +46,16 @@ RSpec.describe DockHealthApi::Task do
     end
   end
 
+  describe "#update" do
+    context "update existing task" do
+      it "should update existing task" do
+        new_params = { description: "test foobar update", id: id }
+        response = DockHealthApi::Task.update(new_params)
+        expect(response["description"]).to eq(new_params[:description])
+      end
+    end
+  end
+
   describe "#delete" do
     context "Delete existing task" do
       it "should delete existing task" do
