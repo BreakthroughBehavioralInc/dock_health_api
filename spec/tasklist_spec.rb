@@ -25,7 +25,7 @@ RSpec.describe DockHealthApi::TaskList do
   describe "#list" do
     context "list all TaskList" do
       it "should list all TaskList" do
-         response = DockHealthApi::TaskList.list
+        response = DockHealthApi::TaskList.list
         expect(response.first.is_a?(DockHealthApi::TaskList))
       end
     end
@@ -53,6 +53,7 @@ RSpec.describe DockHealthApi::TaskList do
         response = DockHealthApi::TaskList.get(wrong_id)
         expect(response["status"]).to eq(404)
       end
+    end
   end
 
   describe "#update" do
