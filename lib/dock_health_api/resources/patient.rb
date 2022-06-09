@@ -1,5 +1,5 @@
 module DockHealthApi
-  class User < Resource
+  class Patient < Resource
     extend DockHealthApi::Crud::Get
     extend DockHealthApi::Crud::List
     extend DockHealthApi::Crud::Create
