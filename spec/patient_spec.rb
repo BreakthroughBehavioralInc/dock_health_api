@@ -10,7 +10,7 @@ RSpec.describe DockHealthApi::Patient do
   
   describe '#list' do
     context "list all patients" do
-      it 'should list persons in that state' do
+      it 'should list all patients' do
         response = DockHealthApi::Patient.list
         expect(response.first.is_a?(DockHealthApi::Patient))
       end
@@ -19,7 +19,7 @@ RSpec.describe DockHealthApi::Patient do
 
   describe '#create' do
     context "create a new patient" do
-      it 'should list persons in that state' do
+      it 'should create a patient' do
         response = DockHealthApi::Patient.create(patient)
         expect(response["firstName"]).to eq(patient[:firstName])
       end
