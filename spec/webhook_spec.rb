@@ -53,6 +53,7 @@ RSpec.describe DockHealthApi::Webhook do
         expect(response.first.is_a?(DockHealthApi::Webhook))
       end
     end
+<<<<<<< HEAD
 
     context "list specific webhook" do
       it "should return the correct webhook" do
@@ -60,6 +61,8 @@ RSpec.describe DockHealthApi::Webhook do
         expect(response.first["url"]).to eq(params[:url])
       end
     end
+=======
+>>>>>>> da73572e4f3c9cd518e8458d66dd7ac7a5a8c7d8
   end
 
   describe "#get" do
