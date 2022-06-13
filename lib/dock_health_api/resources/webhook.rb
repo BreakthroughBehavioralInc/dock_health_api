@@ -3,7 +3,7 @@ module DockHealthApi
     extend DockHealthApi::Crud::Create
     extend DockHealthApi::Crud::Delete
     extend DockHealthApi::Crud::Get
-    extend DockHealthApi::Crud::Update
+    extend DockHealthApi::Crud::Put
     extend DockHealthApi::Crud::List
 
     def self.resource_url

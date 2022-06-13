@@ -14,7 +14,7 @@ module DockHealthApi
       extend DockHealthApi::Crud::Put
 
       def self.resource_url
-        "#{client.config.resource_url}/api/#{url_version}/list/user"
+        "#{TaskList.resource_url}/user"
       end
     end
   end
