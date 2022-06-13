@@ -24,20 +24,20 @@ Or install it yourself as:
 
 ## Usage
 
-The library needs to be configured with your account's key and secret. Set `DockHealthApi.api_key` and ` DockHealthApi.api_secret` to their values, ideally using hidden `ENV` variables:
+The library needs to be configured with your account's key and secret. Set `DockHealthApi.api_key` , ` DockHealthApi.api_secret` to their values, ideally using hidden `ENV` variables:
 
 ```ruby
 require 'dock_health_api'
 DockHealthApi.api_key = ENV["DOCK_HEALTH_KEY"]
 DockHealthApi.api_secret = ENV["DOCK_HEALTH_SECRET"]
 DockHealthApi.resource_url = ENV["DOCK_HEALTH_URL"]
+# Needs to be configurably set in hidden ENV variables to interact with below resources
 DOCK_USER="x-user-id"
 DOCK_ORG="x-organization-id"
 
 # Acquire x-user-id and x-organization-id
 DockHealthApi::Developer.list
-DockHealthApi::Developer::Org.list
-
+DockHealthApi::Organization.list
 
 
 # List All Patients
@@ -61,7 +61,18 @@ DockHealthApi::User.create(user_data)
 # Update Specific User
 DockHealthApi::User.update(updated_user_data)
 # Delete Specific User (can't be an active user)
-DockHealthApi::User.delete({id: "12345"})
+DockHealthApi::User.delete({id: "id of user"})
+
+# List All Organizations
+DockHealthApi::Organization.list
+# Get Specific Organization
+DockHealthApi::Organization.get('id of user')
+# Create Organization
+DockHealthApi::Organization.create(organization_data)
+# Update Specific Organization
+DockHealthApi::Organization.update(updated_organization_data)
+# Delete Specific Organization (can't be an active Organization)
+DockHealthApi::Organization.delete({id: "id of organization"})
 
 
 ```
@@ -114,7 +125,10 @@ Updated Patient Data
   "identifier": "string"
 }
 
-Update User format
+required field
+email
+
+Update User Format
 
 {
   "email: "string,
@@ -122,8 +136,28 @@ Update User format
   "id: "id of user"
 }
 
+
+ ```
+
+# Organization Data Format
+ ```
+{
+  "domain": "string",
+  "name": "string",
+  "identifier": "string"
+}
+
 required field
-email
+domain, name
+
+Update Organization Format
+
+{
+  "domain: "string,
+  ...
+  "id: "id of organization"
+}
+
  ```
 
 ## Development

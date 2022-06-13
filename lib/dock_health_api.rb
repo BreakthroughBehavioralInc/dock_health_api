@@ -24,6 +24,8 @@ module DockHealthApi
   autoload :TaskList, "dock_health_api/resources/tasklist"
   autoload :Webhook, "dock_health_api/resources/webhook"
   autoload :Patient, "dock_health_api/resources/patient"
+  autoload :Developer, "dock_health_api/resources/developer"
+  autoload :Organization, "dock_health_api/resources/organization"
 
   @config = DockHealthApi::Config.new
 
