@@ -1,5 +1,3 @@
-require "dotenv/load"
-require "pry"
 module DockHealthApi
   module Crud
     module Update
