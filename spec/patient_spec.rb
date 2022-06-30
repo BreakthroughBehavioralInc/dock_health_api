@@ -7,7 +7,7 @@ RSpec.describe DockHealthApi::Patient do
   let (:patient) { {firstName: "John",lastName:"Doe", mrn: "908"}}
   let (:update_patient) { {firstName: "JOHN",lastName:"Doe", mrn: "908"}}
   let (:id) {""}
-  
+
   describe '#list' do
     context "list all patients" do
       it 'should list all patients' do
@@ -52,7 +52,7 @@ RSpec.describe DockHealthApi::Patient do
       it 'should delete the patient' do
         id = {id: DockHealthApi::Patient.list.last["id"]}
         response = DockHealthApi::Patient.delete(id)
-        expect(response).to eq("")
+        expect(response["firstName"]).to eq(update_patient[:firstName])
       end
     end
   end
