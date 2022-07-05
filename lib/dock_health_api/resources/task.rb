@@ -12,5 +12,11 @@ module DockHealthApi
       return response.parsed
       new(response.parsed)
     end
+
+    class Group < Task
+      def self.resource_url
+        "#{Task.resource_url}/group"
+      end
+    end
   end
 end
