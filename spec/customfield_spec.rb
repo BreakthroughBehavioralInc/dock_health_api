@@ -3,7 +3,7 @@ require 'spec_helper'
 
 RSpec.describe DockHealthApi::CustomField do
 
-  let(:params) { {targetType: "TASK", fieldCategoryType: "PATIENT_PERSONAL", fieldType: "TEXT", name: "test1234" }
+  let(:params) { {targetType: "PATIENT", fieldCategoryType: "PATIENT_PERSONAL", fieldType: "TEXT", name: "test1234"} }
   id = ""
   describe "#list" do
     context "list all customfield" do
@@ -18,7 +18,7 @@ RSpec.describe DockHealthApi::CustomField do
     context "create a new customfield" do
       it 'should create a new customfield' do
         response = DockHealthApi::CustomField.create(params)
-        expect(response["name"]).to eq(params["name"])
+        expect(response["name"]).to eq(params[:name])
         id = response["id"]
       end
     end
@@ -28,7 +28,7 @@ RSpec.describe DockHealthApi::CustomField do
     context "find a specific customfield" do
       it 'should find the specific customfield' do
         response = DockHealthApi::CustomField.get(id)
-        expect(response["name"]).to eq(params["name"])
+        expect(response["name"]).to eq(params[:name])
       end
     end
   end
@@ -42,11 +42,12 @@ RSpec.describe DockHealthApi::CustomField do
     end
   end
 
-  # describe "#delete" do
-  #   context "delete customfield" do
-  #     it 'should delete the customfield' do
-  #       response = DockHealthApi::CustomField.delete(id: id)
-  #     end
-  #   end
-  # end
+  describe "#delete" do
+    context "delete customfield" do
+      it 'should delete the customfield' do
+        response = DockHealthApi::CustomField.delete(id: id)
+        expect(response["id"]).to eq(id)
+      end
+    end
+  end
 end
