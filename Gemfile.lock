@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    dock_health_api (0.1.1)
+    dock_health_api (0.3.0)
       oauth2 (~> 1.4)
       ostruct
       rspec (~> 3.0)

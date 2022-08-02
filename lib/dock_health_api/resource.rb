@@ -22,6 +22,10 @@ module DockHealthApi
       "#{client.config.resource_url}/api/#{url_version}/#{class_name.downcase}"
     end
 
+    def self.headers
+      {"Content-Type": "application/json", "x-api-key": client.config.api, "x-user-id": client.config.user_id, "x-organization-id": client.config.org_id}
+    end
+
     def self.execute_request(method, url, params: {}, headers: {}, body_params: nil)
       client.token_connection.send(method, url, params: params, headers: headers, body: body_params.to_json)
     end
