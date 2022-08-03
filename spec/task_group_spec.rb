@@ -2,9 +2,10 @@ require 'dock_health_api'
 require 'spec_helper'
 
 RSpec.describe DockHealthApi::Task::Group do
-
-  tasklistid = DockHealthApi::TaskList.list.last["id"]
-  params = { groupName: "test foobar", taskList: { type: "DEVELOPER", id: tasklistid } }
+  let(:tasklistid) { DockHealthApi::TaskList.list.last["id"] }
+  # tasklistid = DockHealthApi::TaskList.list.last["id"]
+  let(:params) {{ groupName: "test foobar", taskList: { type: "DEVELOPER", id: tasklistid } }}
+  # params = { groupName: "test foobar", taskList: { type: "DEVELOPER", id: tasklistid } }
   id = ""
 
   describe "#create" do

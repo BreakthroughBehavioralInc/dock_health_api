@@ -3,8 +3,10 @@ require 'spec_helper'
 
 RSpec.describe DockHealthApi::Task do
 
-  tasklistid = DockHealthApi::TaskList.list.last["id"]
-  params = { description: "test foobar", taskList: { type: "DEVELOPER", id: tasklistid } }
+  let(:tasklistid) {DockHealthApi::TaskList.list.last["id"]}
+  # tasklistid = DockHealthApi::TaskList.list.last["id"]
+  let(:params) {{ description: "test foobar", taskList: { type: "DEVELOPER", id: tasklistid } }}
+  # params = { description: "test foobar", taskList: { type: "DEVELOPER", id: tasklistid } }
   id = ""
 
   describe "#create" do

@@ -72,7 +72,7 @@ RSpec.describe DockHealthApi::TaskList do
         initial_count = DockHealthApi::TaskList.list.count
         response = DockHealthApi::TaskList.delete(id: id)
         final_count = DockHealthApi::TaskList.list.count
-        expect(response).to eq("")
+        expect(response["active"]).to be false
         expect(final_count - initial_count).to eq(-1)
       end
     end
