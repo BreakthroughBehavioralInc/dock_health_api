@@ -7,7 +7,7 @@ RSpec.describe DockHealthApi::Organization do
   let (:organization) { {domain: "TestOrg",name:"TESTORG", identifier: "908"}}
   let (:update_organization) { {domain: "TestOrg",name:"TESTORG!", identifier: "908"}}
   let (:id) {"6ec62151-e64a-42b0-809a-9f5d7eecdae7"}
-  
+
   describe '#list' do
     context "list all organizations" do
       it 'should list all organization' do
@@ -49,7 +49,7 @@ RSpec.describe DockHealthApi::Organization do
 
   describe '#delete' do
     context "delete a specific organization" do
-      it 'should delete the organization' do
+      xit 'should delete the organization' do
         response = DockHealthApi::Organization.delete({id: id})
         expect(response).to eq("")
       end
