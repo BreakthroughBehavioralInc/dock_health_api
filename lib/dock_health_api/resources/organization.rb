@@ -8,7 +8,7 @@ module DockHealthApi
 
     class User < Organization
       def self.resource_url
-        "#{Organization.resource_url}/#{ENV["DOCK_ORG"]}/user"
+        "#{Organization.resource_url}/#{DockHealthApi.org_id}/user"
       end
     end
   end

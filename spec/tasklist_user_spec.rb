@@ -3,9 +3,9 @@ require 'spec_helper'
 
 RSpec.describe DockHealthApi::TaskList::User do
 
-  taskid = DockHealthApi::TaskList.list.last["id"]
-  userid = DockHealthApi::User.list.last["id"]
-  params = { taskList: { type: "DEVELOPER", id: taskid }, user: { type: "DEVELOPER", id: userid } }
+  let(:taskid) {DockHealthApi::TaskList.list.last["id"]}
+  let(:userid) {DockHealthApi::User.list.last["id"]}
+  let(:params) {{ taskList: { type: "DEVELOPER", id: taskid }, user: { type: "DEVELOPER", id: userid } }}
 
   describe "#put" do
     context "Add existing user to TaskList" do
@@ -13,7 +13,7 @@ RSpec.describe DockHealthApi::TaskList::User do
         initial_count = DockHealthApi::TaskList.list.last["listUsers"].count
         response = DockHealthApi::TaskList::User.put(params)
         final_count = DockHealthApi::TaskList.list.last["listUsers"].count
-        expect(response["statusCode"]).to eq("SUCCESS")
+        expect(response["listUsers"].last["user"]["id"]).to eq(userid)
         expect(final_count - initial_count).to eq(1)
       end
     end
@@ -59,7 +59,7 @@ RSpec.describe DockHealthApi::TaskList::User do
         initial_count = DockHealthApi::TaskList.list.last["listUsers"].count
         response = DockHealthApi::TaskList::User.delete(params)
         final_count = DockHealthApi::TaskList.list.last["listUsers"].count
-        expect(response).to eq("")
+        expect(response["listUsers"].last["user"]["id"]).to eq(userid)
         expect(final_count - initial_count).to eq(-1)
       end
     end

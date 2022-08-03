@@ -108,7 +108,7 @@ RSpec.describe DockHealthApi::Webhook do
         initial_count = DockHealthApi::Webhook.list.count
         response = DockHealthApi::Webhook.delete(id: id)
         final_count = DockHealthApi::Webhook.list.count
-        expect(response).to eq("")
+        expect(response["enabled"]).to be false
         expect(final_count - initial_count).to eq(-1)
       end
     end

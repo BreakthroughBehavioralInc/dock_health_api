@@ -40,5 +40,8 @@ module DockHealthApi
     def_delegators :@config, :api_base, :api_base=
     def_delegators :@config, :resource_url, :resource_url=
     def_delegators :@config, :token_url, :token_url=
+    def_delegators :@config, :org_id, :org_id=
+    def_delegators :@config, :user_id, :user_id=
+    def_delegators :@config, :api, :api=
   end
 end

@@ -20,4 +20,7 @@ RSpec.configure do |config|
   DockHealthApi.api_key = ENV["DOCK_HEALTH_KEY"]
   DockHealthApi.api_secret = ENV["DOCK_HEALTH_SECRET"]
   DockHealthApi.resource_url = ENV["DOCK_HEALTH_URL"]
+  DockHealthApi.org_id = ENV["DOCK_ORG"]
+  DockHealthApi.user_id = ENV["DOCK_USER"]
+  DockHealthApi.api = ENV["DOCK_HEALTH_API"]
 end
