@@ -22,7 +22,7 @@ RSpec.describe DockHealthApi::Task::Group do
   describe "#list" do
     context "list task group by criteria" do
       it "should list all task groups by criteria" do
-        response = DockHealthApi::Task.list(taskListIdentifier: tasklistid)
+        response = DockHealthApi::Task::Group.list(taskListIdentifier: tasklistid)
         expect(response.last.is_a?(DockHealthApi::Task::Group))
       end
     end
