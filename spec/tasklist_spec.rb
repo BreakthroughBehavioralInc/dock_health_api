@@ -13,11 +13,9 @@ RSpec.describe DockHealthApi::TaskList do
         initial_count = DockHealthApi::TaskList.list.count
         response = DockHealthApi::TaskList.create(tasklist)
         final_count = DockHealthApi::TaskList.list.count
+        id = response["id"]
         expect(response["tasklist"]).to eq(tasklist["listName"])
         expect(final_count - initial_count).to eq(1)
-        # storing this id for later because TaskList.list.last is NOT
-        # the last created TaskList
-        id = response["id"]
       end
     end
   end

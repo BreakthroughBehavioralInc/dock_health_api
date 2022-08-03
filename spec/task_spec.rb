@@ -4,9 +4,7 @@ require 'spec_helper'
 RSpec.describe DockHealthApi::Task do
 
   let(:tasklistid) {DockHealthApi::TaskList.list.last["id"]}
-  # tasklistid = DockHealthApi::TaskList.list.last["id"]
   let(:params) {{ description: "test foobar", taskList: { type: "DEVELOPER", id: tasklistid } }}
-  # params = { description: "test foobar", taskList: { type: "DEVELOPER", id: tasklistid } }
   id = ""
 
   describe "#create" do
@@ -15,9 +13,9 @@ RSpec.describe DockHealthApi::Task do
         initial_count = DockHealthApi::Task.list(taskListIdentifier: tasklistid).count
         response = DockHealthApi::Task.create(params)
         final_count = DockHealthApi::Task.list(taskListIdentifier: tasklistid).count
+        id = response["id"]
         expect(response["description"]).to eq(params[:description])
         expect(final_count - initial_count).to eq(1)
-        id = response["id"]
       end
     end
   end
