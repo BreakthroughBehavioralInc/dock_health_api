@@ -2,8 +2,6 @@ module DockHealthApi
   module Crud
     module Update
       def update(**params)
-        require 'pry'
-        binding.pry
         headers = {"Content-Type": "application/json", "x-api-key": "#{ENV["DOCK_HEALTH_API"]}", "x-user-id": "#{ENV["DOCK_USER"]}", "x-organization-id": "#{ENV["DOCK_ORG"]}"}
         if params.key?(:organizationId) && params.key?(:userId)
           resource_url_fixed = "#{Organization.resource_url}/#{params[:organizationId]}/user"
