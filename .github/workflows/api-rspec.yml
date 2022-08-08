@@ -9,8 +9,11 @@ jobs:
     name: DockHealth API
     runs-on: ubuntu-latest
   steps:
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.7.4
     - name: Run bundle install
-      with: ruby-version: 2.7.4
       run: bundle install
     - name: Build and test with rspec
       env:
