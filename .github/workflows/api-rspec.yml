@@ -10,8 +10,6 @@ jobs:
           ruby-version: 2.7.4
           bundler-cache: true
       - name: Build and test with rspec
-        env:
-          RAILS_ENV: test
         run: |
           gem install bundler
           bundle exec rspec spec
