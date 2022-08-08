@@ -1,16 +1,13 @@
 name: DockHealth Api
 on: [push]
 jobs:
-  Explore-GitHub-Actions:
+  test:
     runs-on: ubuntu-latest
     steps:
-      - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.9.1
-        with:
-          access_token: ${{ github.token }}
-      - uses: actions/checkout@v2
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.6.3
+          ruby-version: 2.7.4
           bundler-cache: true
+      - name: Run bundle install
+        run: bundle install
