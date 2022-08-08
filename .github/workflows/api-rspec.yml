@@ -13,4 +13,5 @@ jobs:
       - name: Build and test with rspec
         run: |
           gem install bundler
+          bundle install
           bundle exec rspec spec
