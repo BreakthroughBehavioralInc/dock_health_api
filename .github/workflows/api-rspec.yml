@@ -12,4 +12,6 @@ jobs:
       - name: Build and test with rspec
         env:
           RAILS_ENV: test
-        run: bundle exec rspec spec
+        run: |
+          gem install bundler
+          bundle exec rspec spec
