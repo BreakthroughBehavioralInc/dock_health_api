@@ -1,0 +1,18 @@
+name: "DockHealth API RSpec Tests"
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  test:
+    name: DockHealth API
+    runs-on: ubuntu-latest
+  steps:
+    - name: Run bundle install
+      with: ruby-version: 2.7.4
+      run: bundle install
+    - name: Build and test with rspec
+      env:
+        RAILS_ENV: test
+      run: bundle exec rspec spec
