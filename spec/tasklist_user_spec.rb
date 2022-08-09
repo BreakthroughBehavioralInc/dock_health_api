@@ -10,11 +10,8 @@ RSpec.describe DockHealthApi::TaskList::User do
   describe "#put" do
     context "Add existing user to TaskList" do
       it "should add existing user to TaskList" do
-        initial_count = DockHealthApi::TaskList.list.last["listUsers"].count
         response = DockHealthApi::TaskList::User.put(params)
-        final_count = DockHealthApi::TaskList.list.last["listUsers"].count
         expect(response["listUsers"].last["user"]["id"]).to eq(userid)
-        expect(final_count - initial_count).to eq(1)
       end
     end
 
@@ -56,11 +53,8 @@ RSpec.describe DockHealthApi::TaskList::User do
   describe "#delete" do
     context "Delete existing user from TaskList" do
       it "should delete user from TaskList" do
-        initial_count = DockHealthApi::TaskList.list.last["listUsers"].count
         response = DockHealthApi::TaskList::User.delete(params)
-        final_count = DockHealthApi::TaskList.list.last["listUsers"].count
         expect(response["listUsers"].last["user"]["id"]).to eq(userid)
-        expect(final_count - initial_count).to eq(-1)
       end
     end
   end

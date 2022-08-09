@@ -10,12 +10,9 @@ RSpec.describe DockHealthApi::Task do
   describe "#create" do
     context "create new task" do
       it "should create new task" do
-        initial_count = DockHealthApi::Task.list(taskListIdentifier: tasklistid).count
         response = DockHealthApi::Task.create(params)
-        final_count = DockHealthApi::Task.list(taskListIdentifier: tasklistid).count
         id = response["id"]
         expect(response["description"]).to eq(params[:description])
-        expect(final_count - initial_count).to eq(1)
       end
     end
   end
@@ -59,11 +56,8 @@ RSpec.describe DockHealthApi::Task do
   describe "#delete" do
     context "Delete existing task" do
       it "should delete existing task" do
-        initial_count = DockHealthApi::Task.list(taskListIdentifier: tasklistid).count
         response = DockHealthApi::Task.delete(id: id)
-        final_count = DockHealthApi::Task.list(taskListIdentifier: tasklistid).count
         expect(response).to eq("")
-        expect(final_count - initial_count).to eq(-1)
       end
     end
   end
