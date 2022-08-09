@@ -1,5 +1,14 @@
 name: DockHealth Api
 on: [push]
+
+env:
+  DOCK_HEALTH_API: "APxM0p1YKQ8hgUZpQuxOm2VnjgBuKYyQ3dJvTZvp"
+  DOCK_HEALTH_KEY: "7kee30appecrmluili3g69p03d"
+  DOCK_HEALTH_SECRET: "b219gd5qmt3522kn3hk0pi94mvgo4f10ihsh111r1namiqlu36m"
+  DOCK_HEALTH_URL: "https://partner-api-dev.dockhealth.app"
+  DOCK_USER: "bb585d5b-7c6c-42c7-8499-8b0326150d5a"
+  DOCK_ORG: "0cac22c3-2814-42b3-91b9-0afd5a4bdaea"
+
 jobs:
   test:
     runs-on: ubuntu-latest
