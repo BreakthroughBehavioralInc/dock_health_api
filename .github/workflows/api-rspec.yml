@@ -1,0 +1,26 @@
+name: DockHealth Api
+on: [push]
+
+env:
+  DOCK_HEALTH_API:
+  DOCK_HEALTH_KEY:
+  DOCK_HEALTH_SECRET:
+  DOCK_HEALTH_URL: "https://partner-api-dev.dockhealth.app"
+  DOCK_USER:
+  DOCK_ORG: 
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7.4
+          bundler-cache: true
+      - uses: actions/checkout@v3
+      - name: Build and test with rspec
+        run: |
+          gem install bundler
+          bundle install
+          bundle exec rspec spec
