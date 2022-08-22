@@ -11,6 +11,8 @@ Gem::Specification.new do |spec|
   #spec.homepage      = "TODO: Put your gem's website or public repo URL here."
   spec.license       = "MIT"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
+  spec.files         = Dir['**/*'].keep_if { |file| File.file?(file) }
+  spec.require_paths = ["lib"]
 
   #spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
 
