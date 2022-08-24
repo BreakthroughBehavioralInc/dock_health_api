@@ -44,7 +44,7 @@ module DockHealthApi
     def_delegators :@config, :user_id, :user_id=
     def_delegators :@config, :api, :api=
     def_delegators :@config, :iframe_token, :iframe_token=
-    def_delegators :@config, :iframe_toke_expires_at, :iframe_toke_expires_at=
+    def_delegators :@config, :iframe_token_expires_at, :iframe_token_expires_at=
     def_delegators :@config, :token, :token=
     def_delegators :@config, :token_expires_at, :token_expires_at=
 
@@ -53,7 +53,7 @@ module DockHealthApi
     end
 
     def iframe_token_expired?
-      return Time.now > self.iframe_toke_expires_at if self.iframe_toke_expires_at
+      return Time.now > self.iframe_token_expires_at if self.iframe_token_expires_at
       true
     end
   end

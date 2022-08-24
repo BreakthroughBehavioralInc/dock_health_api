@@ -26,11 +26,7 @@ module DockHealthApi
     end
 
     def iframe_token_connection
-      unless @iframe_token_connection
-        get_iframe_token
-      elseif token_expired?(DockHealthApi.iframe_toke_expires_at)
-        get_iframe_token
-      end
+      get_iframe_token
       @iframe_token_connection
     end
 
