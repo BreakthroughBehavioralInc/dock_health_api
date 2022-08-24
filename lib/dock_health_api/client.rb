@@ -43,19 +43,23 @@ module DockHealthApi
     end
 
     def token_expired?(connection)
-      Time.now > DateTime.parse("1969-12-31T20:00:00-05:00").to_time + connection.expires_at
+      Time.now > beginning_of_time + connection.expires_at
     end
 
     def get_token
       @token_connection = connection.client_credentials.get_token(scope:"dockhealth/system.developer.read dockhealth/user.all.write dockhealth/user.all.read dockhealth/system.developer.write dockhealth/patient.all.read dockhealth/patient.all.write dockhealth/system.embedded.launch")
       DockHealthApi.token = @token_connection.token
-      DockHealthApi.token_expires_at = DateTime.parse("1969-12-31T20:00:00-05:00").to_time + @token_connection.expires_at
+      DockHealthApi.token_expires_at = beginning_of_time.to_time + @token_connection.expires_at
     end
 
     def get_iframe_token
       @iframe_token_connection = connection.client_credentials.get_token(scope:"dockhealth/system.embedded.launch")
       DockHealthApi.iframe_token = @iframe_token_connection.token
-      DockHealthApi.iframe_toke_expires_at = DateTime.parse("1969-12-31T20:00:00-05:00").to_time + @iframe_token_connection.expires_at
+      DockHealthApi.iframe_toke_expires_at = beginning_of_time.to_time + @iframe_token_connection.expires_at
+    end
+
+    def beginning_of_time
+      DateTime.parse("1969-12-31T20:00:00-04:00").to_time
     end
   end
 end
