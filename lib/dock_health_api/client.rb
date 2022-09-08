@@ -52,7 +52,7 @@ module DockHealthApi
       @iframe_token_connection = connection.client_credentials.get_token(scope:"dockhealth/system.embedded.launch")
       return @iframe_token_connection if @iframe_token_connection.nil?
       DockHealthApi.iframe_token = @iframe_token_connection.token
-      DockHealthApi.iframe_toke_expires_at = token_expiration_time(@iframe_token_connection.expires_in)
+      DockHealthApi.iframe_token_expires_at = token_expiration_time(@iframe_token_connection.expires_in)
     end
 
     def token_expiration_time(expires_in)
