@@ -56,5 +56,15 @@ module DockHealthApi
       return Time.now > self.iframe_token_expires_at if self.iframe_token_expires_at
       true
     end
+
+    def iframe_url(arg={})
+      DockHealthApi.receive_iframe_token
+      base_url = "http://dev.dock.health/#/embedded?"
+      view_type = arg[:view_type]
+      target_type = arg[:target_type]
+      target_id = arg[:target_id]
+
+      base_url+"authToken=#{iframe_token}&dockOrganizationId=#{org_id}&dockUserId=#{user_id}&viewType=#{view_type}&targeType=#{target_type}&targetId=#{target_id}"
+    end
   end
 end
