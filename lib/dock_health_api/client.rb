@@ -43,7 +43,7 @@ module DockHealthApi
     end
 
     def get_token
-      @token_connection = connection.client_credentials.get_token(scope:"dockhealth/system.developer.read dockhealth/user.all.write dockhealth/user.all.read dockhealth/system.developer.write dockhealth/patient.all.read dockhealth/patient.all.write dockhealth/system.embedded.launch")
+      @token_connection = connection.client_credentials.get_token(scope:"dockhealth/system.developer.read dockhealth/user.all.write dockhealth/user.all.read dockhealth/system.developer.write dockhealth/patient.all.read dockhealth/patient.all.write")
       DockHealthApi.token = @token_connection.token
       DockHealthApi.token_expires_at = token_expiration_time(@token_connection.expires_in)
     end
