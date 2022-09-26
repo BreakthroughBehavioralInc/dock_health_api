@@ -85,5 +85,6 @@ module DockHealthApi
       user_id = arg[:user_id]
 
       base_url+"authToken=#{iframe_token}&dockOrganizationId=#{org_id}&dockUserId=#{user_id}"
+    end
   end
 end
