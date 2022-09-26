@@ -84,7 +84,6 @@ module DockHealthApi
       base_url = "https://dev.dockhealth.app/#/auth/embedded?"
       user_id = arg[:user_id]
 
-      base_url+"authToken=#{iframe_token}&dockOrganizationId=#{org_id}&dockUserId=#{user_id}"#"&viewType=#{view_type}&targeType=#{target_type}&targetId=#{target_id}"
-    end
+      base_url+"authToken=#{iframe_token}&dockOrganizationId=#{org_id}&dockUserId=#{user_id}"
   end
 end
