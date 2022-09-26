@@ -59,12 +59,32 @@ module DockHealthApi
 
     def iframe_url(arg={})
       DockHealthApi.receive_iframe_token
-      base_url = "http://dev.dock.health/#/embedded?"
+      base_url = "http://dev.dockhealth.app/#/embedded?"
       view_type = arg[:view_type]
       target_type = arg[:target_type]
       target_id = arg[:target_id]
 
       base_url+"authToken=#{iframe_token}&dockOrganizationId=#{org_id}&dockUserId=#{user_id}&viewType=#{view_type}&targeType=#{target_type}&targetId=#{target_id}"
+    end
+
+    def patient_task_list_url(arg={})
+      receive_iframe_token
+      base_url = "https://dev.dockhealth.app/#/auth/embedded?"
+      view_type = "PATIENT"
+      target_type = "PATIENT"
+      user_id = arg[:user_id]
+      target_id = arg[:patient_id]
+
+      base_url+"authToken=#{iframe_token}&dockOrganizationId=#{org_id}&dockUserId=#{user_id}&viewType=#{view_type}&targetType=#{target_type}&targetId=#{target_id}"
+    end
+
+
+    def user_task_list_url(arg={})
+      receive_iframe_token
+      base_url = "https://dev.dockhealth.app/#/auth/embedded?"
+      user_id = arg[:user_id]
+
+      base_url+"authToken=#{iframe_token}&dockOrganizationId=#{org_id}&dockUserId=#{user_id}"#"&viewType=#{view_type}&targeType=#{target_type}&targetId=#{target_id}"
     end
   end
 end
