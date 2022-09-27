@@ -59,32 +59,43 @@ module DockHealthApi
 
     def iframe_url(arg={})
       DockHealthApi.receive_iframe_token
-      base_url = "http://dev.dockhealth.app/#/embedded?"
+      base_url = "https://dev.dockhealth.app/#/auth/embedded?"
+      dock_user_id = arg[:user_id]
       view_type = arg[:view_type]
       target_type = arg[:target_type]
       target_id = arg[:target_id]
 
-      base_url+"authToken=#{iframe_token}&dockOrganizationId=#{org_id}&dockUserId=#{user_id}&viewType=#{view_type}&targeType=#{target_type}&targetId=#{target_id}"
+      base_url+"authToken=#{iframe_token}&dockOrganizationId=#{org_id}&dockUserId=#{dock_user_id}&viewType=#{view_type}&targetType=#{target_type}&targetId=#{target_id}"
     end
 
-    def patient_task_list_url(arg={})
+    def patient_url(arg={})
       receive_iframe_token
       base_url = "https://dev.dockhealth.app/#/auth/embedded?"
       view_type = "PATIENT"
       target_type = "PATIENT"
-      user_id = arg[:user_id]
+      dock_user_id = arg[:user_id]
       target_id = arg[:patient_id]
 
-      base_url+"authToken=#{iframe_token}&dockOrganizationId=#{org_id}&dockUserId=#{user_id}&viewType=#{view_type}&targetType=#{target_type}&targetId=#{target_id}"
+      base_url+"authToken=#{iframe_token}&dockOrganizationId=#{org_id}&dockUserId=#{dock_user_id}&viewType=#{view_type}&targetType=#{target_type}&targetId=#{target_id}"
     end
 
 
-    def user_task_list_url(arg={})
+    def user_url(arg={})
       receive_iframe_token
       base_url = "https://dev.dockhealth.app/#/auth/embedded?"
-      user_id = arg[:user_id]
+      dock_user_id = arg[:user_id]
 
-      base_url+"authToken=#{iframe_token}&dockOrganizationId=#{org_id}&dockUserId=#{user_id}"
+      base_url+"authToken=#{iframe_token}&dockOrganizationId=#{org_id}&dockUserId=#{dock_user_id}"
+    end
+
+    def tasklist_url(arg={})
+      receive_iframe_token
+      base_url = "https://dev.dockhealth.app/#/auth/embedded?"
+      view_type = "LIST"
+      target_type = "LIST"
+      target_id = arg[:tasklist_id]
+
+      base_url+"authToken=#{iframe_token}&dockOrganizationId=#{org_id}&dockUserId=#{user_id}&viewType=#{view_type}&targetType=#{target_type}&targetId=#{target_id}"
     end
   end
 end
