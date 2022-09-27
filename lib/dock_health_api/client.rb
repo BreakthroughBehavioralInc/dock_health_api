@@ -17,11 +17,46 @@ module DockHealthApi
     end
 
     def token_connection
-      @token_connection ||= connection.client_credentials.get_token(scope:"dockhealth/system.developer.read dockhealth/user.all.write dockhealth/user.all.read dockhealth/system.developer.write dockhealth/patient.all.read dockhealth/patient.all.write") 
+      unless @token_connection
+        get_token
+      else
+        get_token if token_expired?(DockHealthApi.token_expires_at)
+      end
+      @token_connection
+    end
+
+    def iframe_token_connection
+      get_iframe_token
+      @iframe_token_connection
     end
 
     def token
       @token ||= token_connection.token
+    end
+
+    def iframe_token
+      @iframe_token ||= iframe_token_connection.token
+    end
+
+    def token_expired?(expires_at)
+      Time.now > expires_at
+    end
+
+    def get_token
+      @token_connection = connection.client_credentials.get_token(scope:"dockhealth/system.developer.read dockhealth/user.all.write dockhealth/user.all.read dockhealth/system.developer.write dockhealth/patient.all.read dockhealth/patient.all.write")
+      DockHealthApi.token = @token_connection.token
+      DockHealthApi.token_expires_at = token_expiration_time(@token_connection.expires_in)
+    end
+
+    def get_iframe_token
+      @iframe_token_connection = connection.client_credentials.get_token(scope:"dockhealth/system.embedded.launch")
+      return @iframe_token_connection if @iframe_token_connection.nil?
+      DockHealthApi.iframe_token = @iframe_token_connection.token
+      DockHealthApi.iframe_token_expires_at = token_expiration_time(@iframe_token_connection.expires_in)
+    end
+
+    def token_expiration_time(expires_in)
+      Time.now + expires_in
     end
   end
 end

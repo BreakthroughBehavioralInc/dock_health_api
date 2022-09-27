@@ -32,4 +32,16 @@ RSpec.describe DockHealthApi::Client do
       expect(token_connection.token).to_not be(nil)
     end
   end
+
+  describe "#get_iframe_token" do
+    let (:iframe_token_connection) { DockHealthApi::Client.active_client.iframe_token_connection }
+
+    it 'should return a OAuth2::AccessToken object for iframe' do
+      expect(iframe_token_connection.is_a?(OAuth2::AccessToken))
+    end
+
+    it 'should return include an iframe token' do
+      expect(iframe_token_connection.token).to_not be(nil)
+    end
+  end
 end
