@@ -94,7 +94,7 @@ DockHealthApi::TaskList.delete(id: "<tasklist ID>")
 params = { taskList: { type: "tasklist type", id: "<tasklist id>" }, user: { type: "user type", id: "<user id>" } }
 DockHealthApi::TaskList::User.put(params)
 # Update role for existing user in tasklist
-params = { taskList: { type: "tasklist type", id: "<tasklist id>" }, user: { type: "user type", id: "<user id>", userRole: "user role"} }
+params = { taskList: { type: "tasklist type", id: "<tasklist id>" }, user: { type: "user type", id: "<user id>" }, userRole: "user role" }
 DockHealthApi::TaskList::User.update(params)
 # Delete existing user from tasklist
 params = { taskList: { type: "tasklist type", id: "<tasklist id>" }, user: { type: "user type", id: "<user id>" } }
