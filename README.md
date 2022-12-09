@@ -114,14 +114,16 @@ DockHealthApi::Webhook.put(params)
 DockHealthApi::Webhook.delete(id: "<webhook id>")
 
 # Get Specific Organization
-DockHealthApi::Organization.get('id of user')
+DockHealthApi::Organization.get('id of organization')
 # Create Organization
 DockHealthApi::Organization.create(organization_data)
 # Update Specific Organization
 DockHealthApi::Organization.update(updated_organization_data)
 # Delete Specific Organization (can't be an active Organization)
 DockHealthApi::Organization.delete({id: "id of organization"})
-
+# Add User to Organization
+params = { userId: "<user id>", organizationId: "<organization id>" }
+DockHealthApi::Organization::User.update(params)
 
 ```
 
