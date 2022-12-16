@@ -124,7 +124,8 @@ DockHealthApi::Organization.delete({id: "id of organization"})
 # Add User to Organization
 params = { userId: "<user id>", organizationId: "<organization id>" }
 DockHealthApi::Organization::User.update(params)
-
+# Delete User from Organization
+DockHealthApi::Organization::User.delete({id: "< user id >"})
 ```
 
 # Patient Data Format
