@@ -12,9 +12,7 @@ module DockHealthApi
 
     def self.list(**params)
       headers = {"x-api-key": "#{ENV["DOCK_HEALTH_API"]}", "x-user-id": "#{ENV["DOCK_USER"]}", "x-organization-id": client.config.org_id}
-      response = execute_request(:get, "#{resource_url}", headers: headers, params: params)
-      return response.parsed
-      new(response.parsed)
+      execute_request(:get, "#{resource_url}", headers: headers, params: params)
     end
   end
 end

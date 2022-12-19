@@ -9,12 +9,7 @@ module DockHealthApi
           resource_url_fixed = resource_url
         end
         id = params.delete(:id)
-        response = execute_request(:patch,
-                                   "#{resource_url_fixed}/#{id}",
-                                   headers: headers,
-                                   body_params: params)
-        return response.parsed
-        new(response.parsed)
+        execute_request(:patch, "#{resource_url_fixed}/#{id}", headers: headers, body_params: params)
       end
     end
   end
