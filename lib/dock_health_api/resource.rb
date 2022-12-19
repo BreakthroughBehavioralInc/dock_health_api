@@ -27,7 +27,8 @@ module DockHealthApi
     end
 
     def self.execute_request(method, url, params: {}, headers: {}, body_params: nil)
-      client.token_connection.send(method, url, params: params, headers: headers, body: body_params.to_json)
+      response = client.token_connection.send(method, url, params: params, headers: headers, body: body_params.to_json)
+      client.config.debug ? response : response.parsed
     end
   end
 end
