@@ -8,6 +8,7 @@ env:
   DOCK_HEALTH_URL: ${{ secrets.DOCK_HEALTH_URL }}
   DOCK_USER: ${{ secrets.DOCK_USER }}
   DOCK_ORG: ${{ secrets.DOCK_ORG }}
+  DOCK_HEALTH_AUTH_URL: ${{ secrets.DOCK_HEALTH_AUTH_URL }}
 
 jobs:
   test:
