@@ -27,6 +27,7 @@ module DockHealthApi
   autoload :Developer, "dock_health_api/resources/developer"
   autoload :Organization, "dock_health_api/resources/organization"
   autoload :CustomField, "dock_health_api/resources/customfield"
+  autoload :CustomStatus, "dock_health_api/resources/customstatus"
 
   @config = DockHealthApi::Config.new
   @iframe_base_url = "https://dev.dockhealth.app/#/auth/embedded?"
