@@ -30,7 +30,6 @@ module DockHealthApi
   autoload :CustomStatus, "dock_health_api/resources/customstatus"
 
   @config = DockHealthApi::Config.new
-  @iframe_base_url = "https://dev.dockhealth.app/#/auth/embedded?"
 
   class << self
     attr_reader :config
@@ -50,6 +49,7 @@ module DockHealthApi
     def_delegators :@config, :token, :token=
     def_delegators :@config, :token_expires_at, :token_expires_at=
     def_delegators :@config, :debug, :debug=
+    def_delegators :@config, :iframe_base_url, :iframe_base_url=
 
     def receive_iframe_token
       Client.active_client.iframe_token_connection if iframe_token_expired?
@@ -67,7 +67,7 @@ module DockHealthApi
       target_type = arg[:target_type]
       target_id = arg[:target_id]
 
-      @iframe_base_url+"authToken=#{iframe_token}&dockOrganizationId=#{org_id}&dockUserId=#{dock_user_id}&viewType=#{view_type}&targetType=#{target_type}&targetId=#{target_id}"
+      iframe_base_url+"authToken=#{iframe_token}&dockOrganizationId=#{org_id}&dockUserId=#{dock_user_id}&viewType=#{view_type}&targetType=#{target_type}&targetId=#{target_id}"
     end
 
     def patient_url(arg={})
@@ -77,7 +77,7 @@ module DockHealthApi
       dock_user_id = arg[:user_id]
       target_id = arg[:patient_id]
 
-      @iframe_base_url+"authToken=#{iframe_token}&dockOrganizationId=#{org_id}&dockUserId=#{dock_user_id}&viewType=#{view_type}&targetType=#{target_type}&targetId=#{target_id}"
+      iframe_base_url+"authToken=#{iframe_token}&dockOrganizationId=#{org_id}&dockUserId=#{dock_user_id}&viewType=#{view_type}&targetType=#{target_type}&targetId=#{target_id}"
     end
 
 
@@ -85,7 +85,7 @@ module DockHealthApi
       receive_iframe_token
       dock_user_id = arg[:user_id]
 
-      @iframe_base_url+"authToken=#{iframe_token}&dockOrganizationId=#{org_id}&dockUserId=#{dock_user_id}"
+      iframe_base_url+"authToken=#{iframe_token}&dockOrganizationId=#{org_id}&dockUserId=#{dock_user_id}"
     end
 
     def tasklist_url(arg={})
@@ -94,7 +94,7 @@ module DockHealthApi
       target_type = "LIST"
       target_id = arg[:tasklist_id]
 
-      @iframe_base_url+"authToken=#{iframe_token}&dockOrganizationId=#{org_id}&dockUserId=#{user_id}&viewType=#{view_type}&targetType=#{target_type}&targetId=#{target_id}"
+      iframe_base_url+"authToken=#{iframe_token}&dockOrganizationId=#{org_id}&dockUserId=#{user_id}&viewType=#{view_type}&targetType=#{target_type}&targetId=#{target_id}"
     end
   end
 end
