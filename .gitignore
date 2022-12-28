@@ -57,3 +57,4 @@ build-iPhoneSimulator/
 
 .env
 .rspec_status
+/.idea
