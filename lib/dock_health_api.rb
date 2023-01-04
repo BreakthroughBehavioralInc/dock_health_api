@@ -28,6 +28,7 @@ module DockHealthApi
   autoload :Organization, "dock_health_api/resources/organization"
   autoload :CustomField, "dock_health_api/resources/customfield"
   autoload :CustomStatus, "dock_health_api/resources/customstatus"
+  autoload :UserGroup, "dock_health_api/resources/usergroup"
 
   @config = DockHealthApi::Config.new
 
