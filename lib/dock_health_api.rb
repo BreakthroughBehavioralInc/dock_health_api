@@ -53,7 +53,7 @@ module DockHealthApi
     def_delegators :@config, :iframe_base_url, :iframe_base_url=
 
     def receive_iframe_token
-      Client.active_client.iframe_token_connection if iframe_token_expired?
+      Client.instance.iframe_token_connection if iframe_token_expired?
     end
 
     def iframe_token_expired?
