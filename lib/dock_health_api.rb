@@ -45,24 +45,19 @@ module DockHealthApi
     def_delegators :@config, :org_id, :org_id=
     def_delegators :@config, :user_id, :user_id=
     def_delegators :@config, :api, :api=
-    def_delegators :@config, :iframe_token, :iframe_token=
-    def_delegators :@config, :iframe_token_expires_at, :iframe_token_expires_at=
-    def_delegators :@config, :token, :token=
-    def_delegators :@config, :token_expires_at, :token_expires_at=
     def_delegators :@config, :debug, :debug=
     def_delegators :@config, :iframe_base_url, :iframe_base_url=
 
     def receive_iframe_token
-      Client.instance.iframe_token_connection if iframe_token_expired?
+      @receive_iframe_token ||= Client.instance.iframe_token_connection
     end
 
-    def iframe_token_expired?
-      return Time.now > self.iframe_token_expires_at if self.iframe_token_expires_at
-      true
+    def iframe_token
+      receive_iframe_token.token
     end
 
     def iframe_url(arg={})
-      DockHealthApi.receive_iframe_token
+      receive_iframe_token
       dock_user_id = arg[:user_id]
       view_type = arg[:view_type]
       target_type = arg[:target_type]
