@@ -4,25 +4,20 @@ require 'spec_helper'
 RSpec.describe DockHealthApi::Client do
   let(:config) { DockHealthApi::Config.new }
 
-  it 'should be able to be initialized with a Config object' do
-    client = DockHealthApi::Client.new(config)
-    expect(client.config).to eq(config)
-  end
-
-  describe '#active_client' do
+  describe '#instance' do
     it 'should config new client with standard config' do
-      expect(DockHealthApi::Client.active_client.config).to eq(DockHealthApi.config)
+      expect(DockHealthApi::Client.instance.config).to eq(DockHealthApi.config)
     end
   end
 
   describe "#connection" do
     it 'should initialize an OAuth2::Client object' do
-      expect(DockHealthApi::Client.active_client.connection.is_a?(OAuth2::Client))
+      expect(DockHealthApi::Client.instance.connection.is_a?(OAuth2::Client))
     end
   end
 
   describe "#token_connection" do
-    let (:token_connection) { DockHealthApi::Client.active_client.token_connection }
+    let (:token_connection) { DockHealthApi::Client.instance.token_connection }
 
     it 'should return a OAuth2::AccessToken object' do
       expect(token_connection.is_a?(OAuth2::AccessToken))
@@ -34,7 +29,7 @@ RSpec.describe DockHealthApi::Client do
   end
 
   describe "#get_iframe_token" do
-    let (:iframe_token_connection) { DockHealthApi::Client.active_client.iframe_token_connection }
+    let (:iframe_token_connection) { DockHealthApi::Client.instance.iframe_token_connection }
 
     it 'should return a OAuth2::AccessToken object for iframe' do
       expect(iframe_token_connection.is_a?(OAuth2::AccessToken))

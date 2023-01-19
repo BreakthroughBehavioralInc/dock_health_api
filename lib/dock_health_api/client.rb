@@ -13,6 +13,10 @@ module DockHealthApi
       @config = DockHealthApi.config
     end
 
+    def active_client
+      instance
+    end
+
     def connection
       @connection ||= OAuth2::Client.new(config.api_key, config.api_secret, token_url: config.token_url, raise_errors: false)
     end
