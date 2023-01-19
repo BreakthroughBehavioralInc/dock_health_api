@@ -1,15 +1,16 @@
 require "oauth2"
+require 'singleton'
 
 module DockHealthApi
   class Client
+    BUFFER = 120
+
+    include Singleton
+    
     attr_reader :config
 
-    def initialize(config = {})
-      @config = config
-    end
-
-    def self.active_client
-      new(DockHealthApi.config)
+    def initialize
+      @config = DockHealthApi.config
     end
 
     def connection
@@ -17,12 +18,16 @@ module DockHealthApi
     end
 
     def token_connection
-      unless @token_connection
-        get_token
-      else
-        get_token if token_expired?(DockHealthApi.token_expires_at)
-      end
+      get_token if @token_connection.nil? || token_about_to_expire?
       @token_connection
+    end
+
+    def token_expiration_time
+      @token_expiration_time ||= Time.now + @token_connection.expires_in
+    end
+
+    def token_about_to_expire?
+      Time.now + BUFFER > token_expiration_time
     end
 
     def iframe_token_connection
@@ -38,25 +43,17 @@ module DockHealthApi
       @iframe_token ||= iframe_token_connection.token
     end
 
-    def token_expired?(expires_at)
-      Time.now > expires_at
-    end
-
     def get_token
       @token_connection = connection.client_credentials.get_token(scope:"dockhealth/system.developer.read dockhealth/user.all.write dockhealth/user.all.read dockhealth/system.developer.write dockhealth/patient.all.read dockhealth/patient.all.write")
-      DockHealthApi.token = @token_connection.token
-      DockHealthApi.token_expires_at = token_expiration_time(@token_connection.expires_in)
+      @token_expiration_time = Time.now + @token_connection.expires_in
+      @token_connection
     end
 
     def get_iframe_token
       @iframe_token_connection = connection.client_credentials.get_token(scope:"dockhealth/system.embedded.launch")
       return @iframe_token_connection if @iframe_token_connection.nil?
       DockHealthApi.iframe_token = @iframe_token_connection.token
-      DockHealthApi.iframe_token_expires_at = token_expiration_time(@iframe_token_connection.expires_in)
-    end
-
-    def token_expiration_time(expires_in)
-      Time.now + expires_in
+      DockHealthApi.iframe_token_expires_at = Time.now + @iframe_token_connection.expires_in
     end
   end
 end
