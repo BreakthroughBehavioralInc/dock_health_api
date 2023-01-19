@@ -9,7 +9,7 @@ module DockHealthApi
     end
 
     def self.client
-      @client ||= DockHealthApi::Client.active_client
+      DockHealthApi::Client.instance
     end
 
     def self.resource_url
