@@ -6,15 +6,11 @@ module DockHealthApi
     BUFFER = 120
 
     include Singleton
-    
+
     attr_reader :config
 
     def initialize
       @config = DockHealthApi.config
-    end
-
-    def active_client
-      instance
     end
 
     def connection
@@ -35,8 +31,16 @@ module DockHealthApi
     end
 
     def iframe_token_connection
-      get_iframe_token
+      get_iframe_token if @iframe_token_connection.nil? || iframe_token_about_to_expire?
       @iframe_token_connection
+    end
+
+    def iframe_token_expiration_time
+      @iframe_token_expiration_time ||= Time.now + @iframe_token_connection.expires_in
+    end
+
+    def iframe_token_about_to_expire?
+      Time.now + BUFFER > iframe_token_expiration_time
     end
 
     def token
@@ -56,8 +60,8 @@ module DockHealthApi
     def get_iframe_token
       @iframe_token_connection = connection.client_credentials.get_token(scope:"dockhealth/system.embedded.launch")
       return @iframe_token_connection if @iframe_token_connection.nil?
-      DockHealthApi.iframe_token = @iframe_token_connection.token
-      DockHealthApi.iframe_token_expires_at = Time.now + @iframe_token_connection.expires_in
+      @iframe_token_expiration_time = Time.now + @iframe_token_connection.expires_in
+      @iframe_token_connection
     end
   end
 end

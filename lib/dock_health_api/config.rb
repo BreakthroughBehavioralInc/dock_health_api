@@ -8,10 +8,6 @@ module DockHealthApi
       :org_id,
       :user_id,
       :api,
-      :iframe_token,
-      :token,
-      :iframe_token_expires_at,
-      :token_expires_at,
       :debug,
       :iframe_base_url
   end
