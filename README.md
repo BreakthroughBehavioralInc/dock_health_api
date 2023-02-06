@@ -126,6 +126,19 @@ params = { userId: "<user id>", organizationId: "<organization id>" }
 DockHealthApi::Organization::User.update(params)
 # Delete User from Organization
 DockHealthApi::Organization::User.delete({id: "< user id >"})
+
+# Get Specific Comment
+DockHealthApi::Task::Comment.get("<comment id>")
+# List comments for a specific task
+DockHealthApi::Task::Comment.list(taskIdentifier: "<task id>")
+# Create comment for a specific task
+params = { comment: "comment text here", task: { type: "TASK", id: "<task id>" }}
+DockHealthApi::Task::Comment.create(params)
+# Update specific comment
+params = { comment: "comment text here", id: "<comment id>" }
+DockHealthApi::Task::Comment.update(params)
+# Delete a specific comment
+DockHealthApi::Task::Comment.delete(id: "<comment id>")
 ```
 
 # Patient Data Format

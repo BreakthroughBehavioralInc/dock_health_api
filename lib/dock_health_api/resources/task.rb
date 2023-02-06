@@ -16,5 +16,11 @@ module DockHealthApi
         "#{Task.resource_url}/group"
       end
     end
+
+    class Comment < Task
+      def self.resource_url
+        "#{Task.resource_url}/comment"
+      end
+    end    
   end
 end
