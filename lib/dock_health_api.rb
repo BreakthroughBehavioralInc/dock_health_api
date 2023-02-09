@@ -49,7 +49,7 @@ module DockHealthApi
     def_delegators :@config, :iframe_base_url, :iframe_base_url=
 
     def receive_iframe_token
-      @receive_iframe_token ||= Client.instance.iframe_token_connection
+      Client.instance.iframe_token_connection
     end
 
     def iframe_token
