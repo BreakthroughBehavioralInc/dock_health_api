@@ -1,7 +1,7 @@
 module DockHealthApi
   module Crud
     module List
-      def list(**params)
+      def list(params={})
         response = execute_request(:get, "#{resource_url}", headers: headers)
         return response if client.config.debug || params.empty?
         search_result = response

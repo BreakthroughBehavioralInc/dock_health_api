@@ -1,7 +1,7 @@
 module DockHealthApi
   module Crud
     module Update
-      def update(**params)
+      def update(params={})
         if params.key?(:organizationId) && params.key?(:userId)
           resource_url_fixed = "#{Organization.resource_url}/#{params[:organizationId]}/user"
           params[:id] = params[:userId]
