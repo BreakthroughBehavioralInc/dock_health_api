@@ -75,8 +75,6 @@ params = { description: "task description", id: "<task ID>" }
 DockHealthApi::Task.update(params)
 # Delete task
 DockHealthApi::Task.delete(id: "<task ID>")
-# List All Organizations
-DockHealthApi::Organization.list
 
 # Create tasklist with tasklist name
 DockHealthApi::TaskList.create(listName: "tasklist name")
@@ -113,6 +111,8 @@ DockHealthApi::Webhook.put(params)
 # Delete webhook
 DockHealthApi::Webhook.delete(id: "<webhook id>")
 
+# List All Organizations
+DockHealthApi::Organization.list
 # Get Specific Organization
 DockHealthApi::Organization.get('id of organization')
 # Create Organization
@@ -139,6 +139,11 @@ params = { comment: "comment text here", id: "<comment id>" }
 DockHealthApi::Task::Comment.update(params)
 # Delete a specific comment
 DockHealthApi::Task::Comment.delete(id: "<comment id>")
+
+# List all CustomStatus
+DockHealthApi::CustomStatus.list
+# Search CustomStatus by attribute
+DockHealthApi::CustomStatus.list(name: "<status name>")
 ```
 
 # Patient Data Format
