@@ -10,6 +10,7 @@ require "dock_health_api/crud/update"
 require "dock_health_api/crud/put"
 require "dock_health_api/crud/delete"
 require "dock_health_api/crud/list"
+require "dock_health_api/crud/search"
 
 require "dock_health_api/config"
 
